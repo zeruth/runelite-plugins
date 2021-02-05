@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2019 Owain van Brakel <https:github.com/Owain94>
+ * Copyright (c) 2019 Im2be <https://github.com/Im2be>
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -23,41 +23,15 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-rootProject.name = "xKylee Plugins"
+package net.runelite.client.plugins.cerberus.domain;
 
-//Libs
-include(":extutils")
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 
-//Plugins
-include(":alchemicalhydra")
-include(":anonymizer")
-include(":aoewarnings")
-include(":autoclicker")
-include(":autoprayflick")
-include(":boss-swapper")
-include(":cerberus")
-include(":dagannothkings")
-include(":custom-swapper")
-include(":leftclickcast")
-include(":oneclick")
-include(":spellbook")
-include(":strongholdofsecurity")
-include(":tarnslair")
-include(":templetrekking")
-include(":theatre")
-include(":ticktimers")
-include(":tobdamagecount")
-include(":wildernesslocations")
-include(":vetion")
-include(":vorkath")
-include(":zulrah")
-
-for (project in rootProject.children) {
-    project.apply {
-        projectDir = file(name)
-        buildFileName = "$name.gradle.kts"
-
-        require(projectDir.isDirectory) { "Project '${project.path} must have a $projectDir directory" }
-        require(buildFile.isFile) { "Project '${project.path} must have a $buildFile build script" }
-    }
+@Getter
+@RequiredArgsConstructor
+public class CerberusAttack
+{
+	private final int tick;
+	private final Cerberus.Attack attack;
 }

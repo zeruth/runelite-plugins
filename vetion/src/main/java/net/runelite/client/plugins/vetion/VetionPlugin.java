@@ -32,7 +32,7 @@ import javax.inject.Inject;
 import lombok.AccessLevel;
 import lombok.Getter;
 import net.runelite.api.Actor;
-import com.openosrs.api.AnimationID;
+import net.runelite.api.AnimationID;
 import net.runelite.api.events.AnimationChanged;
 import net.runelite.client.config.ConfigManager;
 import net.runelite.client.eventbus.Subscribe;

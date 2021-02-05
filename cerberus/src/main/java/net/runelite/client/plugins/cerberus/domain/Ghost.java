@@ -1,5 +1,6 @@
 /*
- * Copyright (c) 2019 Owain van Brakel <https:github.com/Owain94>
+ * Copyright (c) 2018, Tomas Slusny <slusnucky@gmail.com>
+ * Copyright (c) 2019 Im2be <https://github.com/Im2be>
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -23,41 +24,53 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-rootProject.name = "xKylee Plugins"
+package net.runelite.client.plugins.cerberus.domain;
 
-//Libs
-include(":extutils")
+import com.google.common.collect.ImmutableMap;
+import java.awt.Color;
+import java.util.Map;
+import javax.annotation.Nullable;
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+import net.runelite.api.NPC;
+import net.runelite.api.NpcID;
+import net.runelite.api.Skill;
 
-//Plugins
-include(":alchemicalhydra")
-include(":anonymizer")
-include(":aoewarnings")
-include(":autoclicker")
-include(":autoprayflick")
-include(":boss-swapper")
-include(":cerberus")
-include(":dagannothkings")
-include(":custom-swapper")
-include(":leftclickcast")
-include(":oneclick")
-include(":spellbook")
-include(":strongholdofsecurity")
-include(":tarnslair")
-include(":templetrekking")
-include(":theatre")
-include(":ticktimers")
-include(":tobdamagecount")
-include(":wildernesslocations")
-include(":vetion")
-include(":vorkath")
-include(":zulrah")
+@Getter
+@RequiredArgsConstructor
+public enum Ghost
+{
+	RANGE(NpcID.SUMMONED_SOUL, Skill.RANGED, Color.GREEN),
+	MAGE(NpcID.SUMMONED_SOUL_5868, Skill.MAGIC, Color.BLUE),
+	MELEE(NpcID.SUMMONED_SOUL_5869, Skill.ATTACK, Color.RED);
 
-for (project in rootProject.children) {
-    project.apply {
-        projectDir = file(name)
-        buildFileName = "$name.gradle.kts"
+	private static final Map<Integer, Ghost> MAP;
 
-        require(projectDir.isDirectory) { "Project '${project.path} must have a $projectDir directory" }
-        require(buildFile.isFile) { "Project '${project.path} must have a $buildFile build script" }
-    }
+	static
+	{
+		final ImmutableMap.Builder<Integer, Ghost> builder = new ImmutableMap.Builder<>();
+
+		for (final Ghost ghost : values())
+		{
+			builder.put(ghost.getNpcId(), ghost);
+		}
+
+		MAP = builder.build();
+	}
+
+	private final int npcId;
+	private final Skill type;
+	private final Color color;
+
+	/**
+	 * Try to identify if NPC is ghost
+	 *
+	 * @param npc npc
+	 * @return optional ghost
+	 */
+	@Nullable
+	public static Ghost fromNPC(final NPC npc)
+	{
+		return MAP.get(npc.getId());
+	}
 }

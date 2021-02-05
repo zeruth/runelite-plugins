@@ -35,7 +35,7 @@ import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import net.runelite.api.Actor;
-import com.openosrs.api.AnimationID;
+import net.runelite.api.AnimationID;
 import net.runelite.api.NPC;
 import net.runelite.api.NPCComposition;
 import net.runelite.api.NpcID;

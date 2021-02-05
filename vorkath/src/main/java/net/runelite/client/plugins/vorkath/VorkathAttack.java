@@ -30,7 +30,7 @@ import java.util.Map;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-import com.openosrs.api.AnimationID;
+import net.runelite.api.AnimationID;
 import net.runelite.api.ProjectileID;
 
 @AllArgsConstructor

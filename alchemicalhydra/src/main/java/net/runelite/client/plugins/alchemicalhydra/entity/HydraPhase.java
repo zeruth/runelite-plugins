@@ -29,7 +29,7 @@ import java.awt.image.BufferedImage;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
-import com.openosrs.api.AnimationID;
+import net.runelite.api.AnimationID;
 import net.runelite.api.ProjectileID;
 import net.runelite.api.SpriteID;
 import net.runelite.api.coords.WorldPoint;

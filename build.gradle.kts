@@ -80,6 +80,7 @@ subprojects {
         compileOnly("com.openosrs.rs:runescape-api:$rlVersion")
         compileOnly("com.openosrs:runelite-api:$rlVersion")
         compileOnly("com.openosrs:runelite-client:$rlVersion")
+        compileOnly("com.openosrs:http-api:$rlVersion")
 
         compileOnly(Libraries.apacheCommonsText)
         compileOnly(Libraries.guice)
