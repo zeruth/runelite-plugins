@@ -1,5 +1,6 @@
 /*
- * Copyright (c) 2019 Owain van Brakel <https:github.com/Owain94>
+ * Copyright (c) 2019 Owain van Brakel <https://github.com/Owain94>
+ * Copyright (c) 2019 Ganom <https://github.com/Ganom>
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -23,38 +24,22 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-rootProject.name = "xKylee Plugins"
+version = "5.15.0"
 
-//Libs
-include(":extutils")
+project.extra["PluginName"] = "BasicBossSwapper"
+project.extra["PluginDescription"] = "Does stuff and things."
 
-//Plugins
-include(":alchemicalhydra")
-include(":anonymizer")
-include(":aoewarnings")
-include(":autoclicker")
-include(":autoprayflick")
-include(":boss-swapper")
-include(":custom-swapper")
-include(":oneclick")
-include(":spellbook")
-include(":strongholdofsecurity")
-include(":tarnslair")
-include(":templetrekking")
-include(":theatre")
-include(":ticktimers")
-include(":tobdamagecount")
-include(":wildernesslocations")
-include(":vetion")
-include(":vorkath")
-include(":zulrah")
-
-for (project in rootProject.children) {
-    project.apply {
-        projectDir = file(name)
-        buildFileName = "$name.gradle.kts"
-
-        require(projectDir.isDirectory) { "Project '${project.path} must have a $projectDir directory" }
-        require(buildFile.isFile) { "Project '${project.path} must have a $buildFile build script" }
+tasks {
+    jar {
+        manifest {
+            attributes(mapOf(
+                    "Plugin-Version" to project.version,
+                    "Plugin-Id" to nameToId(project.extra["PluginName"] as String),
+                    "Plugin-Provider" to project.extra["PluginProvider"],
+                    "Plugin-Dependencies" to nameToId("extutils"),
+                    "Plugin-Description" to project.extra["PluginDescription"],
+                    "Plugin-License" to project.extra["PluginLicense"]
+            ))
+        }
     }
 }

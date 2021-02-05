@@ -77,6 +77,7 @@ subprojects {
         annotationProcessor(Libraries.lombok)
         annotationProcessor(Libraries.pf4j)
 
+        compileOnly("com.openosrs.rs:runescape-api:$rlVersion")
         compileOnly("com.openosrs:runelite-api:$rlVersion")
         compileOnly("com.openosrs:runelite-client:$rlVersion")
 
@@ -86,6 +87,9 @@ subprojects {
         compileOnly(Libraries.lombok)
         compileOnly(Libraries.pf4j)
         compileOnly("org.jetbrains:annotations:13.0")
+
+        if (!project.name.equals("extutils"))
+        implementation(project(":extutils"))
     }
 
     apply<JavaPlugin>()
