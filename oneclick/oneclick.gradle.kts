@@ -1,7 +1,6 @@
-import ProjectVersions.rlVersion
-
 /*
  * Copyright (c) 2019 Owain van Brakel <https://github.com/Owain94>
+ * Copyright (c) 2019 Ganom <https://github.com/Ganom>
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -24,11 +23,12 @@ import ProjectVersions.rlVersion
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
+import ProjectVersions.rlVersion
 
-version = "0.0.16"
+version = "5.14.0"
 
-project.extra["PluginName"] = "Boss Tick Timers"
-project.extra["PluginDescription"] = "Tick timers for bosses"
+project.extra["PluginName"] = "OneClick"
+project.extra["PluginDescription"] = "OP One Click methods."
 
 tasks {
     jar {

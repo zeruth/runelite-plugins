@@ -30,18 +30,6 @@ version = "0.0.10"
 project.extra["PluginName"] = "Wilderness Locations"
 project.extra["PluginDescription"] = "Indicates the players current location in the wild"
 
-dependencies {
-    annotationProcessor(Libraries.lombok)
-    annotationProcessor(Libraries.pf4j)
-
-    compileOnly("com.openosrs:runelite-api:$rlVersion")
-    compileOnly("com.openosrs:runelite-client:$rlVersion")
-
-    compileOnly(Libraries.guice)
-    compileOnly(Libraries.lombok)
-    compileOnly(Libraries.pf4j)
-}
-
 tasks {
     jar {
         manifest {

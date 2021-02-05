@@ -27,6 +27,7 @@ rootProject.name = "xKylee Plugins"
 
 include(":alchemicalhydra")
 include(":aoewarnings")
+include(":oneclick")
 include(":spellbook")
 include(":strongholdofsecurity")
 include(":tarnslair")

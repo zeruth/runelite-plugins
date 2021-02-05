@@ -30,20 +30,6 @@ version = "0.0.26"
 project.extra["PluginName"] = "Theatre Of Blood"
 project.extra["PluginDescription"] = "All-in-one plugin for Theatre of Blood"
 
-dependencies {
-    annotationProcessor(Libraries.lombok)
-    annotationProcessor(Libraries.pf4j)
-
-    compileOnly("com.openosrs:runelite-api:$rlVersion")
-    compileOnly("com.openosrs:runelite-client:$rlVersion")
-
-    compileOnly(Libraries.guice)
-    compileOnly(Libraries.lombok)
-    compileOnly(Libraries.pf4j)
-    compileOnly(Libraries.rxjava)
-    compileOnly(Libraries.apacheCommonsText)
-}
-
 tasks {
     jar {
         manifest {

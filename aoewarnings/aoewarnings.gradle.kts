@@ -30,18 +30,6 @@ version = "0.0.9"
 project.extra["PluginName"] = "AoE Warnings"
 project.extra["PluginDescription"] = "Shows the final destination for AoE Attack projectiles"
 
-dependencies {
-    annotationProcessor(Libraries.lombok)
-    annotationProcessor(Libraries.pf4j)
-
-    compileOnly("com.openosrs:runelite-api:$rlVersion")
-    compileOnly("com.openosrs:runelite-client:$rlVersion")
-
-    compileOnly(Libraries.guice)
-    compileOnly(Libraries.lombok)
-    compileOnly(Libraries.pf4j)
-}
-
 tasks {
     jar {
         manifest {

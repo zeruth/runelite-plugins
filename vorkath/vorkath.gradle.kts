@@ -30,19 +30,6 @@ version = "0.0.7"
 project.extra["PluginName"] = "Vorkath"
 project.extra["PluginDescription"] = "Count vorkath attacks, indicate next phase, wooxwalk timer, indicate path through acid"
 
-dependencies {
-    annotationProcessor(Libraries.lombok)
-    annotationProcessor(Libraries.pf4j)
-
-    compileOnly("com.openosrs:runelite-api:$rlVersion")
-    compileOnly("com.openosrs:runelite-client:$rlVersion")
-
-    compileOnly(Libraries.apacheCommonsText)
-    compileOnly(Libraries.guice)
-    compileOnly(Libraries.lombok)
-    compileOnly(Libraries.pf4j)
-}
-
 tasks {
     jar {
         manifest {

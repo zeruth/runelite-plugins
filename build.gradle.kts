@@ -1,3 +1,5 @@
+import ProjectVersions.rlVersion
+
 buildscript {
     repositories {
         gradlePluginPortal()
@@ -5,6 +7,7 @@ buildscript {
 }
 
 plugins {
+    java
     checkstyle
 }
 
@@ -65,6 +68,24 @@ subprojects {
                 includeGroupByRegex("com\\.openosrs.*")
             }
         }
+    }
+
+    apply<JavaPlugin>()
+    apply<JavaLibraryPlugin>()
+
+    dependencies {
+        annotationProcessor(Libraries.lombok)
+        annotationProcessor(Libraries.pf4j)
+
+        compileOnly("com.openosrs:runelite-api:$rlVersion")
+        compileOnly("com.openosrs:runelite-client:$rlVersion")
+
+        compileOnly(Libraries.apacheCommonsText)
+        compileOnly(Libraries.guice)
+        compileOnly(Libraries.gson)
+        compileOnly(Libraries.lombok)
+        compileOnly(Libraries.pf4j)
+        compileOnly("org.jetbrains:annotations:13.0")
     }
 
     apply<JavaPlugin>()

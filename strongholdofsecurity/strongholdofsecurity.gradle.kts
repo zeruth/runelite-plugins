@@ -30,18 +30,6 @@ version = "0.0.7"
 project.extra["PluginName"] = "Stronghold"
 project.extra["PluginDescription"] = "Highlights the correct answer to Stronghold of Security questions."
 
-dependencies {
-    annotationProcessor(Libraries.lombok)
-    annotationProcessor(Libraries.pf4j)
-
-    compileOnly("com.openosrs:runelite-api:$rlVersion")
-    compileOnly("com.openosrs:runelite-client:$rlVersion")
-
-    compileOnly(Libraries.guice)
-    compileOnly(Libraries.lombok)
-    compileOnly(Libraries.pf4j)
-}
-
 tasks {
     jar {
         manifest {
