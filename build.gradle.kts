@@ -87,6 +87,7 @@ subprojects {
         compileOnly(Libraries.gson)
         compileOnly(Libraries.lombok)
         compileOnly(Libraries.pf4j)
+        compileOnly(Libraries.okhttp3)
         compileOnly("org.jetbrains:annotations:13.0")
 
         if (!project.name.equals("extutils"))

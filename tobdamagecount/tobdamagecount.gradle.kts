@@ -30,18 +30,6 @@ version = "0.0.9"
 project.extra["PluginName"] = "ToB Damage Counter"
 project.extra["PluginDescription"] = "Gives you an estimation damage on a boss and taken after the fight is done the damage will be posted in the chat"
 
-dependencies {
-    annotationProcessor(Libraries.lombok)
-    annotationProcessor(Libraries.pf4j)
-
-    compileOnly("com.openosrs:runelite-api:$rlVersion")
-    compileOnly("com.openosrs:runelite-client:$rlVersion")
-
-    compileOnly(Libraries.guice)
-    compileOnly(Libraries.lombok)
-    compileOnly(Libraries.pf4j)
-}
-
 tasks {
     jar {
         manifest {
