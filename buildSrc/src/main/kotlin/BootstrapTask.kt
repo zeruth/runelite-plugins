@@ -1,4 +1,5 @@
 import com.savvasdalkitsis.jsonmerger.JsonMerger
+import groovy.json.JsonOutput
 
 import okhttp3.OkHttpClient
 import okhttp3.Request
@@ -26,28 +27,19 @@ open class BootstrapTask : DefaultTask() {
         return MessageDigest.getInstance("SHA-512").digest(file).fold("", { str, it -> str + "%02x".format(it) }).toUpperCase()
     }
 
-    private fun getBootstrap(): JSONArray? {
-        val client = OkHttpClient()
-
-        val url = "https://raw.githubusercontent.com/zeruth/xkylee-runelite-release/main/plugins.json"
-        val request = Request.Builder()
-                .url(url)
-                .build()
-
-        client.newCall(request).execute().use { response -> return JSONObject("{\"plugins\":${response.body!!.string()}}").getJSONArray("plugins") }
-    }
-
     @TaskAction
     fun boostrap() {
         if (project == project.rootProject) {
             val bootstrapDir = File("${project.buildDir}/bootstrap")
             val bootstrapReleaseDir = File("${project.buildDir}/bootstrap/release")
 
+            if (bootstrapDir.exists())
+                bootstrapDir.deleteRecursively()
+
             bootstrapDir.mkdirs()
             bootstrapReleaseDir.mkdirs()
 
             val plugins = ArrayList<JSONObject>()
-            val baseBootstrap = getBootstrap() ?: throw RuntimeException("Base bootstrap is null!")
 
             project.subprojects.forEach {
                 if (it.project.properties.containsKey("PluginName") && it.project.properties.containsKey("PluginDescription")) {
@@ -73,23 +65,6 @@ open class BootstrapTask : DefaultTask() {
                             "releases" to releases.toTypedArray()
                     ).jsonObject()
 
-                    for (i in 0 until baseBootstrap.length()) {
-                        val item = baseBootstrap.getJSONObject(i)
-
-                        if (!item.get("id").equals(nameToId(it.project.extra.get("PluginName") as String))) {
-                            continue
-                        }
-
-                        if (it.project.version.toString() in item.getJSONArray("releases").toString()) {
-                            pluginAdded = true
-                            plugins.add(item)
-                            break
-                        }
-
-                        plugins.add(JsonMerger(arrayMergeMode = JsonMerger.ArrayMergeMode.MERGE_ARRAY).merge(item, pluginObject))
-                        pluginAdded = true
-                    }
-
                     if (!pluginAdded)
                     {
                         plugins.add(pluginObject)
@@ -99,8 +74,10 @@ open class BootstrapTask : DefaultTask() {
                 }
             }
 
+            val prettyJson = JsonOutput.prettyPrint(plugins.toString())
+
             File(bootstrapDir, "plugins.json").printWriter().use { out ->
-                out.println(plugins.toString())
+                out.println(prettyJson)
             }
         }
 
