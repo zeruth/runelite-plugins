@@ -112,7 +112,7 @@ public class KQPlugin extends Plugin
 	}
 
 	@Subscribe
-	private void onConfigChange(final ConfigChanged event)
+	private void onConfigChanged(final ConfigChanged event)
 	{
 		if (!event.getGroup().equals("kalphitequeen"))
 		{
